@@ -7,7 +7,7 @@
 apt-get update && apt-get install git -y
 ```
 ```
-python3 -m pip install git+https://github.com/RecProjects/Checkuser.git
+python3 -m pip install git+https://github.com/Razhiel2019/Chksr.git
 ```
 ```
 checkuser --create-service --config-port 5000 --start
