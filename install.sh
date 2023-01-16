@@ -83,13 +83,14 @@ function uninstall_checkuser() {
 }
 
 function console_menu() {
+    tput clear
     [[ $(ps x | grep -w checkuser | grep -v grep) ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
-    clear
     echo
     echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
-    echo -e "\e[32m >>>\e[1;49;97m    CHECKUSER MENU    \e[0m\e[32m<<<\e[0m"
+    echo -e "\e[32m >>>\e[1;49;97m     CHECKUSER MENU    \e[0m\e[32m<<<\e[0m"
     echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo -e "\e[1;33m URL: http://"$(wget -qO- ipv4.icanhazip.com)":"$port
+    echo
     echo -e "\e[1;97m S T A T U S : $chk \e[0m"
     echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo -e "\e[31m [01] - \e[1;49;97mInstalar CheckUser\e[0m"
