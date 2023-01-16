@@ -34,14 +34,15 @@ function install_checkuser() {
     fi
 
     clear
-    read -p "Porta: " -e -i 5000 port
+    echo
+    read -p " Elige Puerta (5000 default): " -e -i 5000 port
     checkuser --config-port $port --create-service
     service check_user start
 
     echo " CheckUser instalado con Exito."
     echo " Execute: checkuser --help"
     echo " URL: http://"$(curl -s icanhazip.com)":"$port
-    read
+    sleep 1
 }
 
 function check_update() {
@@ -81,21 +82,21 @@ function uninstall_checkuser() {
 }
 
 function console_menu() {
-    [[ $(screen -list | grep -wc 'checkuser') != '0' ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
+    [[ $(screen -list | grep -wc 'check_user') != '0' ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
     clear
     echo
-    echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
-    echo -e "\e[32m >>>\e[1;49;97m CHECKUSER MENU \e[0m\e[32m<<<\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
+    echo -e "\e[32m >>>\e[1;49;97m    CHECKUSER MENU    \e[0m\e[32m<<<\e[0m"
+    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo -e "\e[1;33m URL: http://"$(wget -qO- ipv4.icanhazip.com)":"$port
     echo -e "\e[1;97m S T A T U S : $chk \e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo -e "\e[31m [01] - \e[1;49;97mInstalar CheckUser\e[0m"
     echo -e "\e[31m [02] - \e[1;49;97mActualizar CheckUser\e[0m"
     echo -e "\e[31m [03] - \e[1;49;97mDesinstalar CheckUser\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo -e "\e[31m [00] - \e[1;33m Salir\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     read -p " Escoge una opción: " option
 
     case $option in
