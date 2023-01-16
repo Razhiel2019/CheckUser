@@ -1,4 +1,4 @@
-url="https://github.com/alfainternet/CheckUser"
+url="https://github.com/Razhiel2019/Chksr"
 
 cd ~
 
