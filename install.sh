@@ -82,7 +82,7 @@ function uninstall_checkuser() {
 }
 
 function console_menu() {
-    [[ $(screen -list | grep -wc 'check_user') != '0' ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
+    [[ $(ps x | grep -w checkuser | grep -v grep) ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
     clear
     echo
     echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
