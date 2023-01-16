@@ -8,7 +8,7 @@ VERSION = __version__
 DESCRIPTION = open('README.md').read()
 AUTHOR = __author__
 AUTHOR_EMAIL = __email__
-URL = 'https://github.com/Razhiel2019/Chksr'
+URL = 'https://github.com/Razhiel2019/CheckUser'
 LICENSE = 'MIT'
 
 setup(name='CheckerUser',
