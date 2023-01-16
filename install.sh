@@ -85,9 +85,9 @@ function console_menu() {
     clear
     echo
     echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
-    echo -e "\e[32m >>>\e[1;49;97m   CHECKUSER MENU   \e[0m\e[32m<<<\e[0m"
+    echo -e "\e[32m >>>\e[1;49;97m CHECKUSER MENU \e[0m\e[32m<<<\e[0m"
     echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
-    echo -e "\e[1;33m URL: http://"$(curl -s icanhazip.com)":"$port
+    echo -e "\e[1;33m URL: http://"$(wget -qO- ipv4.icanhazip.com)":"$port
     echo -e "\e[1;97m S T A T U S : $chk \e[0m"
     echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
     echo -e "\e[31m [01] - \e[1;49;97mInstalar CheckUser\e[0m"
