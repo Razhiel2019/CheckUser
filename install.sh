@@ -30,7 +30,8 @@ function install_checkuser() {
 
     if ! [ -x "$(command -v checkuser)" ]; then
         echo " Error: CheckUser no esta instalado." >&2
-        exit 1
+        #exit 1
+        sleep 1
     fi
 
     clear
