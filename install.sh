@@ -14,22 +14,28 @@ if ! [ -x "$(command -v git)" ]; then
     echo " Git instalado con Exito."
 
     if ! [ -x "$(command -v git)" ]; then
-        echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         echo " Error: Git no esta instalado." >&2
-        echo -e "\e[32m >>>>>>>>>>>>><<<<<<<<<<<<\e[0m"
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         exit 1
     fi
 fi
 
 function install_checkuser() {
+    echo
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo " Instalando CheckUser..."
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     git clone $url
     cd CheckUser
 
     python3 setup.py install
 
     if ! [ -x "$(command -v checkuser)" ]; then
+        echo
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         echo " Error: CheckUser no esta instalado." >&2
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         #exit 1
         sleep 1
     fi
@@ -39,20 +45,28 @@ function install_checkuser() {
     read -p " Elige Puerta (5000 default): " -e -i 5000 port
     checkuser --config-port $port --create-service
     service check_user start
-
+    echo
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo " CheckUser instalado con Exito."
     echo " Execute: checkuser --help"
-    echo " URL: http://"$(curl -s icanhazip.com)":"$port
+    echo " URL: http://"$(wget -qO- ipv4.icanhazip.com)":"$port/checkUser
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     sleep 1
 }
 
 function check_update() {
     if ! [ -d CheckUser ]; then
+        echo
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         echo " CheckUser no esta instalado."
+        echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
         return 1
     fi
 
+    echo
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo " Verificando atualizaciones..."
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     cd CheckUser
 
     git fetch --all
@@ -60,12 +74,18 @@ function check_update() {
     git pull origin master
 
     python3 setup.py install
+    echo
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo " CheckUser actualizado con Exito."
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     read
 }
 
 function uninstall_checkuser() {
+    echo
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
     echo " Desinstalando CheckUser..."
+    echo -e "\e[32m >>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
 
     [[ -d CheckUser ]] && rm -rf CheckUser
 
@@ -86,19 +106,19 @@ function console_menu() {
     tput clear
     [[ $(ps x | grep -w checkuser | grep -v grep) ]] && chk="\033[1;32m◉" || chk="\033[1;31m○"
     echo
-    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
-    echo -e "\e[32m >>>\e[1;49;97m     CHECKUSER MENU    \e[0m\e[32m<<<\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
-    echo -e "\e[1;33m URL: http://"$(wget -qO- ipv4.icanhazip.com)":"$port
+    msg -bar
+    echo -e "\e[32m >>>\e[1;49;97m     CHECKUSER RAZHIEL MODS   \e[0m\e[32m<<<\e[0m"
+    msg -bar
+    echo -e "\e[1;33m http://"$(wget -qO- ipv4.icanhazip.com)":"$port/checkUser
     echo
     echo -e "\e[1;97m S T A T U S : $chk \e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
+    msg -bar
     echo -e "\e[31m [01] - \e[1;49;97mInstalar CheckUser\e[0m"
     echo -e "\e[31m [02] - \e[1;49;97mActualizar CheckUser\e[0m"
     echo -e "\e[31m [03] - \e[1;49;97mDesinstalar CheckUser\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
+    msg -bar
     echo -e "\e[31m [00] - \e[1;33m Salir\e[0m"
-    echo -e "\e[32m >>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<\e[0m"
+    msg -bar
     read -p " Escoge una opción: " option
 
     case $option in
